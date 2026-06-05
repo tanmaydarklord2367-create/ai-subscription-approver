@@ -2,8 +2,23 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const DEPARTMENTS = [
-  'Engineering', 'Marketing', 'Sales', 'HR', 'Finance',
-  'Operations', 'Product', 'Design', 'Legal', 'Other',
+  'Web Development',
+  'Mobile Development',
+  'UI/UX Design',
+  'Creative & Branding',
+  'Digital Marketing',
+  'SEO & Content',
+  'Social Media',
+  'Performance Marketing',
+  'Video Production',
+  'Analytics & Data',
+  'Client Servicing',
+  'Business Development',
+  'Project Management',
+  'HR',
+  'Finance & Accounts',
+  'Operations',
+  'Other',
 ];
 
 const EMPTY_FORM = {
