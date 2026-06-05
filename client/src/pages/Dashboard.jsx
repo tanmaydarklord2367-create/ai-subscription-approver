@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 
 /* ─── Helpers ─── */
 function fmtDate(iso) {
@@ -258,6 +259,35 @@ export default function Dashboard() {
 
   const logout = () => { localStorage.clear(); navigate('/'); };
 
+  const exportToExcel = () => {
+    const rows = requests.map(r => ({
+      'Employee Name':        r.employeeName,
+      'Employee Email':       r.employeeEmail,
+      'Department':           r.department,
+      'Tool Name':            r.toolName,
+      'Tool Website':         r.toolWebsite || '',
+      'Budget Amount':        `$${r.budgetAmount}`,
+      'Billing Cycle':        r.budgetCycle,
+      'Reason':               r.reason,
+      'Status':               r.status === 'pending_hr' ? 'Pending HR'
+                              : r.status === 'pending_director' ? 'Pending Director'
+                              : r.status.charAt(0).toUpperCase() + r.status.slice(1),
+      'Submitted Date':       new Date(r.submittedAt).toLocaleDateString(),
+      'HR Decision':          r.hrAction?.action || 'Pending',
+      'HR Decision Date':     r.hrAction?.at ? new Date(r.hrAction.at).toLocaleDateString() : '',
+      'HR Notes':             r.hrAction?.reason || '',
+      'Director Decision':    r.directorAction?.action || '',
+      'Director Decision Date': r.directorAction?.at ? new Date(r.directorAction.at).toLocaleDateString() : '',
+      'Director Notes':       r.directorAction?.reason || '',
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws['!cols'] = [20,25,15,20,20,15,12,50,18,12,15,18,12,15,20,12].map(w => ({ wch: w }));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Requests');
+    XLSX.writeFile(wb, `ai-requests-${new Date().toISOString().slice(0, 10)}.xlsx`);
+  };
+
   const FILTERS = [
     { key: 'all',      label: 'All',      count: stats.total    },
     { key: 'pending',  label: 'Pending',  count: stats.pending  },
@@ -331,13 +361,14 @@ export default function Dashboard() {
               )}
             </button>
           ))}
-          <button
-            className="btn btn-outline btn-sm"
-            onClick={fetchRequests}
-            style={{ marginLeft: 'auto' }}
-          >
-            ↻ Refresh
-          </button>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
+            <button className="btn btn-outline btn-sm" onClick={fetchRequests}>
+              ↻ Refresh
+            </button>
+            <button className="btn btn-outline btn-sm" onClick={exportToExcel} disabled={requests.length === 0}>
+              📥 Export to Excel
+            </button>
+          </div>
         </div>
 
         {/* Request list */}
