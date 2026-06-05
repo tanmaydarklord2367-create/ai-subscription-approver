@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const DEPARTMENTS = [
-  'Web Development',
-  'Mobile Development',
-  'UI/UX Design',
   'Creative & Branding',
   'Digital Marketing',
   'SEO & Content',
