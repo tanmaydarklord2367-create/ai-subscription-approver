@@ -98,9 +98,6 @@ export default function Login() {
                 required
                 autoFocus
               />
-              <span className="form-hint">
-                Default: HR → <code>hr123</code> · Director → <code>director123</code>
-              </span>
             </div>
 
             {error && <div className="alert alert-error">{error}</div>}
