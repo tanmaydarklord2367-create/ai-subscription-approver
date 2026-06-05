@@ -9,7 +9,7 @@ function fmtDate(iso) {
 
 function fmtBudget(amount, cycle) {
   const label = cycle === 'one-time' ? 'one-time' : `/${cycle === 'monthly' ? 'mo' : 'yr'}`;
-  return `$${amount}${label}`;
+  return `₹${amount}${label}`;
 }
 
 /* ─── Approval step pill ─── */
@@ -266,7 +266,7 @@ export default function Dashboard() {
       'Department':           r.department,
       'Tool Name':            r.toolName,
       'Tool Website':         r.toolWebsite || '',
-      'Budget Amount':        `$${r.budgetAmount}`,
+      'Budget Amount':        `₹${r.budgetAmount}`,
       'Billing Cycle':        r.budgetCycle,
       'Reason':               r.reason,
       'Status':               r.status === 'pending_hr' ? 'Pending HR'

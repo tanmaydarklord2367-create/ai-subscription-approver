@@ -177,7 +177,7 @@ export default function Submit() {
                   <span style={{
                     position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)',
                     color: 'var(--text-muted)', fontSize: 14, pointerEvents: 'none',
-                  }}>$</span>
+                  }}>₹</span>
                   <input
                     className="form-input"
                     style={{ paddingLeft: 24 }}
