@@ -95,6 +95,12 @@ function RequestCard({ request: req, canAct, actionLoading, onApprove, onReject 
             <span className="badge" style={{ background: 'var(--primary-light)', color: 'var(--primary)' }}>
               {req.department}
             </span>
+            <span className="badge" style={{
+              background: req.toolType === 'ai' ? '#F0FDF4' : '#EFF6FF',
+              color: req.toolType === 'ai' ? '#166534' : '#1E40AF',
+            }}>
+              {req.toolType === 'ai' ? '🤖 AI Subscription' : '☁️ SaaS Software'}
+            </span>
             <span className="badge" style={{ background: 'var(--bg)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>
               💰 {fmtBudget(req.budgetAmount, req.budgetCycle)}
             </span>
@@ -264,6 +270,7 @@ export default function Dashboard() {
       'Employee Name':        r.employeeName,
       'Employee Email':       r.employeeEmail,
       'Department':           r.department,
+      'Subscription Type':    r.toolType === 'ai' ? 'AI Subscription' : 'SaaS Software',
       'Tool Name':            r.toolName,
       'Tool Website':         r.toolWebsite || '',
       'Budget Amount':        `₹${r.budgetAmount}`,

@@ -25,6 +25,7 @@ const EMPTY_FORM = {
   employeeName: '',
   employeeEmail: '',
   department: '',
+  toolType: 'ai',
   toolName: '',
   toolWebsite: '',
   budgetAmount: '',
@@ -143,6 +144,36 @@ export default function Submit() {
                 <option value="">Select your department…</option>
                 {DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
               </select>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Subscription Type <span className="req">*</span></label>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                {[
+                  { value: 'ai', icon: '🤖', label: 'AI Subscription', desc: 'e.g. ChatGPT, Copilot, Gemini' },
+                  { value: 'saas', icon: '☁️', label: 'SaaS Software', desc: 'e.g. Notion, Slack, Figma' },
+                ].map(t => (
+                  <button
+                    key={t.value}
+                    type="button"
+                    onClick={() => setForm(f => ({ ...f, toolType: t.value }))}
+                    style={{
+                      padding: '12px 14px',
+                      border: `2px solid ${form.toolType === t.value ? 'var(--primary)' : 'var(--border)'}`,
+                      borderRadius: 'var(--radius)',
+                      background: form.toolType === t.value ? 'var(--primary-light)' : 'var(--surface)',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      fontFamily: 'inherit',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    <div style={{ fontSize: 20, marginBottom: 4 }}>{t.icon}</div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: form.toolType === t.value ? 'var(--primary)' : 'var(--text-primary)' }}>{t.label}</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>{t.desc}</div>
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="form-group">

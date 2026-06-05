@@ -110,7 +110,7 @@ app.post('/api/auth/login', (req, res) => {
 });
 
 app.post('/api/requests', async (req, res) => {
-  const { employeeName, employeeEmail, department, toolName, toolWebsite, budgetAmount, budgetCycle, reason } = req.body;
+  const { employeeName, employeeEmail, department, toolType, toolName, toolWebsite, budgetAmount, budgetCycle, reason } = req.body;
   if (!employeeName || !employeeEmail || !department || !toolName || !budgetAmount || !reason) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -119,6 +119,7 @@ app.post('/api/requests', async (req, res) => {
     employeeName: employeeName.trim(),
     employeeEmail: employeeEmail.trim().toLowerCase(),
     department,
+    toolType: toolType || 'ai',
     toolName: toolName.trim(),
     toolWebsite: toolWebsite?.trim() || '',
     budgetAmount: parseFloat(budgetAmount),
