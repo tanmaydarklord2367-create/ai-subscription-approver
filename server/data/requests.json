@@ -1,0 +1,67 @@
+[
+  {
+    "id": "demo-0001-0001-0001-000000000001",
+    "employeeName": "Sarah Johnson",
+    "employeeEmail": "sarah.johnson@company.com",
+    "department": "Engineering",
+    "toolName": "GitHub Copilot",
+    "toolWebsite": "https://github.com/features/copilot",
+    "budgetAmount": 19,
+    "budgetCycle": "monthly",
+    "reason": "GitHub Copilot would significantly boost developer productivity by providing AI-assisted code completion. Our team of 5 engineers spends considerable time writing boilerplate code. Early testing shows 30–40% productivity gains on routine coding tasks, and it integrates directly into VS Code which we already use.",
+    "status": "pending_hr",
+    "submittedAt": "2026-06-04T09:00:00.000Z",
+    "hrAction": null,
+    "directorAction": null
+  },
+  {
+    "id": "demo-0002-0002-0002-000000000002",
+    "employeeName": "Michael Chen",
+    "employeeEmail": "m.chen@company.com",
+    "department": "Marketing",
+    "toolName": "Jasper AI",
+    "toolWebsite": "https://www.jasper.ai",
+    "budgetAmount": 49,
+    "budgetCycle": "monthly",
+    "reason": "Jasper AI would help the marketing team create blog posts, social media content, and ad copy 3x faster. We are planning to double our content output this quarter and this tool would make that feasible without hiring additional headcount. We have piloted it for two weeks and the results are strong.",
+    "status": "pending_director",
+    "submittedAt": "2026-06-02T14:30:00.000Z",
+    "hrAction": { "at": "2026-06-03T10:15:00.000Z", "action": "approved" },
+    "directorAction": null
+  },
+  {
+    "id": "demo-0003-0003-0003-000000000003",
+    "employeeName": "Emily Rodriguez",
+    "employeeEmail": "e.rodriguez@company.com",
+    "department": "Sales",
+    "toolName": "Grammarly Business",
+    "toolWebsite": "https://www.grammarly.com/business",
+    "budgetAmount": 15,
+    "budgetCycle": "monthly",
+    "reason": "Grammarly Business would help the sales team write more professional emails and proposals. Our close rate on deals where we sent polished proposals is 40% higher than on rough drafts. This is a low-cost tool with a clear, measurable ROI and no security concerns.",
+    "status": "approved",
+    "submittedAt": "2026-05-28T11:00:00.000Z",
+    "hrAction": { "at": "2026-05-29T09:00:00.000Z", "action": "approved" },
+    "directorAction": { "at": "2026-05-30T16:00:00.000Z", "action": "approved" }
+  },
+  {
+    "id": "demo-0004-0004-0004-000000000004",
+    "employeeName": "David Park",
+    "employeeEmail": "d.park@company.com",
+    "department": "Finance",
+    "toolName": "ChatGPT Enterprise",
+    "toolWebsite": "https://openai.com/enterprise",
+    "budgetAmount": 25,
+    "budgetCycle": "monthly",
+    "reason": "Looking to use ChatGPT Enterprise for financial analysis and report generation. Would like to automate some of the manual reporting work our team does each month.",
+    "status": "rejected",
+    "submittedAt": "2026-05-25T15:00:00.000Z",
+    "hrAction": {
+      "at": "2026-05-26T10:00:00.000Z",
+      "action": "rejected",
+      "reason": "Request lacks detail on data security and privacy implications for sensitive financial data. Please resubmit with a data handling plan and confirm no financial figures will be entered into the tool."
+    },
+    "directorAction": null,
+    "rejectedBy": "hr"
+  }
+]
