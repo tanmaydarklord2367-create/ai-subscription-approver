@@ -306,7 +306,7 @@ export default function Dashboard() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       {/* Nav */}
       <nav className="nav">
-        <Link to="/" className="nav-logo">🤖 AI Approver</Link>
+        <Link to="/" className="nav-logo">✦ Django</Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span className={`badge ${role === 'hr' ? 'badge-pending-hr' : 'badge-pending-director'}`}>
             {role === 'hr' ? '👥 HR Manager' : '🎯 Director'}
@@ -342,14 +342,15 @@ export default function Dashboard() {
           style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 28 }}
         >
           {[
-            { label: 'Total',    value: stats.total,    color: 'var(--text-primary)' },
-            { label: 'Pending',  value: stats.pending,  color: 'var(--warning)'      },
-            { label: 'Approved', value: stats.approved, color: 'var(--success)'      },
-            { label: 'Rejected', value: stats.rejected, color: 'var(--danger)'       },
+            { label: 'Total Requests', value: stats.total,    icon: '📋', grad: 'linear-gradient(135deg,#6366F1,#8B5CF6)' },
+            { label: 'Pending',        value: stats.pending,  icon: '⏳', grad: 'linear-gradient(135deg,#F59E0B,#EF4444)' },
+            { label: 'Approved',       value: stats.approved, icon: '✅', grad: 'linear-gradient(135deg,#059669,#10B981)' },
+            { label: 'Rejected',       value: stats.rejected, icon: '❌', grad: 'linear-gradient(135deg,#DC2626,#F87171)' },
           ].map(s => (
-            <div key={s.label} className="card" style={{ padding: '18px 20px' }}>
-              <div style={{ fontSize: 28, fontWeight: 800, color: s.color }}>{s.value}</div>
-              <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginTop: 2 }}>{s.label}</div>
+            <div key={s.label} className="card" style={{ padding: '20px 22px', overflow: 'hidden', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.grad, borderRadius: '14px 14px 0 0' }} />
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: 1.5, marginBottom: 8, marginTop: 4 }}>{s.icon} {s.label.toUpperCase()}</div>
+              <div style={{ fontSize: 34, fontWeight: 900, background: s.grad, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{s.value}</div>
             </div>
           ))}
         </div>
