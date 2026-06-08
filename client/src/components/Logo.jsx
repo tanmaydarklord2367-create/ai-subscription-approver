@@ -4,8 +4,8 @@ export default function Logo({ size = 28, light = false }) {
       fontSize: size,
       fontWeight: 800,
       background: light
-        ? 'linear-gradient(135deg, #6366F1, #EC4899)'
-        : 'linear-gradient(135deg, #A78BFA, #F472B6)',
+        ? 'linear-gradient(135deg, #FF4500, #FF8C00)'
+        : 'linear-gradient(135deg, #FFFFFF, #FF6B00)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
