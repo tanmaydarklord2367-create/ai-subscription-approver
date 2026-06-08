@@ -223,6 +223,41 @@ body {
   filter: blur(60px);
 }
 
+/* ─── Dark home page hovers ─── */
+.dark-card {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.dark-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(167,139,250,0.35) !important;
+  box-shadow: 0 16px 40px rgba(99,102,241,0.2);
+}
+
+.hero-btn-primary {
+  transition: all 0.2s ease;
+}
+.hero-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(139,92,246,0.75) !important;
+}
+
+.hero-btn-outline {
+  transition: all 0.2s ease;
+}
+.hero-btn-outline:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.13) !important;
+  border-color: rgba(255,255,255,0.35) !important;
+}
+
+.dark-nav-btn {
+  transition: all 0.2s ease;
+}
+.dark-nav-btn:hover {
+  background: rgba(167,139,250,0.2) !important;
+  border-color: rgba(167,139,250,0.7) !important;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 640px) {
   .grid-2   { grid-template-columns: 1fr !important; }

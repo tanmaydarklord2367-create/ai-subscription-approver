@@ -14,11 +14,10 @@ export default function Home() {
         background: 'rgba(15,10,30,0.85)', backdropFilter: 'blur(16px)',
       }}>
         <Logo size={30} />
-        <Link to="/login" style={{
+        <Link to="/login" className="dark-nav-btn" style={{
           padding: '9px 20px', borderRadius: 10, fontSize: 14, fontWeight: 600,
           border: '1.5px solid rgba(167,139,250,0.4)', color: '#A78BFA',
-          textDecoration: 'none', transition: 'all 0.2s',
-          background: 'rgba(167,139,250,0.08)',
+          textDecoration: 'none', background: 'rgba(167,139,250,0.08)',
         }}>
           Approver Login →
         </Link>
@@ -57,19 +56,19 @@ export default function Home() {
 
           {/* CTAs */}
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/submit" style={{
+            <Link to="/submit" className="hero-btn-primary" style={{
               padding: '14px 32px', borderRadius: 14, fontWeight: 700, fontSize: 16,
               background: 'linear-gradient(135deg, #6366F1, #A855F7, #EC4899)',
               color: 'white', textDecoration: 'none',
               boxShadow: '0 0 30px rgba(139,92,246,0.5)',
-              transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: 8,
+              display: 'inline-flex', alignItems: 'center', gap: 8,
             }}>
               📝 Submit a Request
             </Link>
-            <Link to="/login" style={{
+            <Link to="/login" className="hero-btn-outline" style={{
               padding: '14px 32px', borderRadius: 14, fontWeight: 700, fontSize: 16,
               background: 'rgba(255,255,255,0.07)', border: '1.5px solid rgba(255,255,255,0.15)',
-              color: 'white', textDecoration: 'none', transition: 'all 0.2s',
+              color: 'white', textDecoration: 'none',
               display: 'inline-flex', alignItems: 'center', gap: 8,
             }}>
               🔐 Approver Login
@@ -96,10 +95,9 @@ export default function Home() {
             { step: '02', icon: '👥', title: 'HR Reviews', grad: 'linear-gradient(135deg,#8B5CF6,#C026D3)', desc: 'HR checks it for policy fit and passes it to the director.' },
             { step: '03', icon: '✅', title: 'Director Approves', grad: 'linear-gradient(135deg,#C026D3,#EC4899)', desc: 'Final sign-off is given. The tool can be purchased right away.' },
           ].map(s => (
-            <div key={s.step} style={{
+            <div key={s.step} className="dark-card" style={{
               background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
               borderRadius: 20, padding: 28, position: 'relative', overflow: 'hidden',
-              transition: 'transform 0.2s, border-color 0.2s',
             }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.grad, borderRadius: '20px 20px 0 0' }} />
               <div style={{ width: 52, height: 52, borderRadius: 16, background: s.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 18, boxShadow: '0 8px 20px rgba(99,102,241,0.3)' }}>
