@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../components/Logo';
 
 const DEPARTMENTS = [
   'Creative & Branding',
@@ -65,6 +66,7 @@ export default function Submit() {
         <nav className="nav"><Link to="/" className="nav-logo">✦ Django</Link></nav>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
           <div className="card" style={{ maxWidth: 500, width: '100%', padding: 48, textAlign: 'center', position: 'relative' }}>
+          <div style={{ marginBottom: 20 }}><Logo size={32} light /></div>
             <div style={{
               width: 72, height: 72, borderRadius: 22, background: 'var(--grad)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -93,7 +95,7 @@ export default function Submit() {
       <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.1)', top: -100, right: -100, position: 'fixed' }} />
       <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.08)', bottom: 0, left: -100, position: 'fixed' }} />
 
-      <nav className="nav"><Link to="/" className="nav-logo">✦ Django</Link></nav>
+      <nav className="nav"><Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link></nav>
 
       <div style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 60px', position: 'relative' }}>
         {/* Header */}

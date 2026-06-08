@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Logo from '../components/Logo';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function Login() {
       <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.1)', bottom: -80, left: -80, position: 'fixed' }} />
 
       <nav className="nav">
-        <Link to="/" className="nav-logo">✦ Django</Link>
+        <Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link>
       </nav>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, position: 'relative' }}>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Logo from '../components/Logo';
 
 export default function Home() {
   return (
@@ -12,9 +13,7 @@ export default function Home() {
         position: 'sticky', top: 0, zIndex: 100,
         background: 'rgba(15,10,30,0.85)', backdropFilter: 'blur(16px)',
       }}>
-        <span style={{ fontSize: 22, fontWeight: 900, background: 'linear-gradient(135deg,#A78BFA,#F472B6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-          ✦ Django
-        </span>
+        <Logo size={30} />
         <Link to="/login" style={{
           padding: '9px 20px', borderRadius: 10, fontSize: 14, fontWeight: 600,
           border: '1.5px solid rgba(167,139,250,0.4)', color: '#A78BFA',

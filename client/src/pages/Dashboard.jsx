@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import * as XLSX from 'xlsx';
+import Logo from '../components/Logo';
 
 /* ─── Helpers ─── */
 function fmtDate(iso) {
@@ -306,7 +307,7 @@ export default function Dashboard() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       {/* Nav */}
       <nav className="nav">
-        <Link to="/" className="nav-logo">✦ Django</Link>
+        <Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span className={`badge ${role === 'hr' ? 'badge-pending-hr' : 'badge-pending-director'}`}>
             {role === 'hr' ? '👥 HR Manager' : '🎯 Director'}
