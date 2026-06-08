@@ -10,9 +10,9 @@ export default function Logo({ size = 28, light = false }) {
       userSelect: 'none',
       lineHeight: 1,
     }}>
-      DJANG
+      DJAN
       <span style={{ position: 'relative', display: 'inline-block' }}>
-        O
+        G
         <span style={{
           position: 'absolute',
           bottom: '10%',
@@ -23,6 +23,7 @@ export default function Logo({ size = 28, light = false }) {
           borderRadius: 2,
         }} />
       </span>
+      O
     </span>
   );
 }
