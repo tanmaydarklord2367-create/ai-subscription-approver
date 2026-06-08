@@ -15,10 +15,10 @@ export default function Logo({ size = 28, light = false }) {
         G
         <span style={{
           position: 'absolute',
-          bottom: '10%',
-          right: '-8%',
-          width: '38%',
-          height: '38%',
+          top: '22%',
+          right: '8%',
+          width: '32%',
+          height: '32%',
           background: '#FF4500',
           borderRadius: 2,
         }} />
