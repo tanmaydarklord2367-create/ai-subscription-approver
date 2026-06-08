@@ -2,46 +2,77 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', overflow: 'hidden' }}>
-      <nav className="nav">
-        <span className="nav-logo">✦ Django</span>
-        <Link to="/login" className="btn btn-outline btn-sm">Approver Login →</Link>
+    <div style={{ minHeight: '100vh', background: '#0F0A1E' }}>
+
+      {/* Nav */}
+      <nav style={{
+        padding: '0 32px', height: 68,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        position: 'sticky', top: 0, zIndex: 100,
+        background: 'rgba(15,10,30,0.85)', backdropFilter: 'blur(16px)',
+      }}>
+        <span style={{ fontSize: 22, fontWeight: 900, background: 'linear-gradient(135deg,#A78BFA,#F472B6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          ✦ Django
+        </span>
+        <Link to="/login" style={{
+          padding: '9px 20px', borderRadius: 10, fontSize: 14, fontWeight: 600,
+          border: '1.5px solid rgba(167,139,250,0.4)', color: '#A78BFA',
+          textDecoration: 'none', transition: 'all 0.2s',
+          background: 'rgba(167,139,250,0.08)',
+        }}>
+          Approver Login →
+        </Link>
       </nav>
 
       {/* Hero */}
-      <div style={{ position: 'relative', padding: '90px 24px 70px', textAlign: 'center' }}>
-        {/* Blobs */}
-        <div className="blob" style={{ width: 500, height: 500, background: 'rgba(99,102,241,0.15)', top: -150, right: -100 }} />
-        <div className="blob" style={{ width: 350, height: 350, background: 'rgba(236,72,153,0.12)', bottom: -80, left: -80 }} />
-        <div className="blob" style={{ width: 250, height: 250, background: 'rgba(139,92,246,0.1)', top: 100, left: '20%' }} />
+      <div style={{ position: 'relative', padding: '100px 24px 80px', textAlign: 'center', overflow: 'hidden' }}>
+        {/* Glow blobs */}
+        <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)', top: -200, right: -100, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(236,72,153,0.2) 0%, transparent 70%)', bottom: -100, left: -80, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)', top: 80, left: '25%', pointerEvents: 'none' }} />
 
-        <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto' }}>
-          {/* Pill tag */}
+        <div style={{ position: 'relative', maxWidth: 800, margin: '0 auto' }}>
+          {/* Badge */}
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '7px 18px', borderRadius: 999, marginBottom: 28,
-            background: 'linear-gradient(135deg, rgba(99,102,241,0.12), rgba(236,72,153,0.12))',
-            border: '1px solid rgba(99,102,241,0.2)',
-            fontSize: 13, fontWeight: 600, color: 'var(--primary)',
+            display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 30,
+            padding: '8px 20px', borderRadius: 999,
+            background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.3)',
+            fontSize: 13, fontWeight: 600, color: '#C4B5FD',
           }}>
-            <span style={{ fontSize: 16 }}>🚀</span> Django Internal Tool Portal
+            🚀 Django Internal Tool Portal
           </div>
 
-          <h1 style={{ fontSize: 60, fontWeight: 900, lineHeight: 1.1, marginBottom: 22, letterSpacing: '-0.02em' }}>
+          {/* Headline */}
+          <h1 style={{ fontSize: 68, fontWeight: 900, lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.03em', color: 'white' }}>
             Request AI &{' '}
-            <span className="gradient-text">SaaS Tools</span>
+            <span style={{ background: 'linear-gradient(135deg, #A78BFA, #F472B6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              SaaS Tools
+            </span>
             <br />the smart way
           </h1>
 
-          <p style={{ fontSize: 18, color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto 42px' }}>
-            Submit tool requests for your team. HR reviews them, the director gives final sign-off. Simple, fast, transparent.
+          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, maxWidth: 500, margin: '0 auto 44px' }}>
+            Submit tool requests for your team. HR reviews, the director approves. Simple, fast, transparent.
           </p>
 
+          {/* CTAs */}
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/submit" className="btn btn-primary btn-lg">
+            <Link to="/submit" style={{
+              padding: '14px 32px', borderRadius: 14, fontWeight: 700, fontSize: 16,
+              background: 'linear-gradient(135deg, #6366F1, #A855F7, #EC4899)',
+              color: 'white', textDecoration: 'none',
+              boxShadow: '0 0 30px rgba(139,92,246,0.5)',
+              transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: 8,
+            }}>
               📝 Submit a Request
             </Link>
-            <Link to="/login" className="btn btn-outline btn-lg">
+            <Link to="/login" style={{
+              padding: '14px 32px', borderRadius: 14, fontWeight: 700, fontSize: 16,
+              background: 'rgba(255,255,255,0.07)', border: '1.5px solid rgba(255,255,255,0.15)',
+              color: 'white', textDecoration: 'none', transition: 'all 0.2s',
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+            }}>
               🔐 Approver Login
             </Link>
           </div>
@@ -49,29 +80,35 @@ export default function Home() {
       </div>
 
       {/* How it works */}
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: '10px 24px 90px' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2 style={{ fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em' }}>
-            How it <span className="gradient-text">works</span>
+      <div style={{ maxWidth: 1000, margin: '20px auto 0', padding: '0 24px 100px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 50 }}>
+          <h2 style={{ fontSize: 36, fontWeight: 900, color: 'white', letterSpacing: '-0.02em' }}>
+            How it{' '}
+            <span style={{ background: 'linear-gradient(135deg,#A78BFA,#F472B6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              works
+            </span>
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginTop: 10, fontSize: 15 }}>Three simple steps from request to approval</p>
+          <p style={{ color: 'rgba(255,255,255,0.45)', marginTop: 10, fontSize: 15 }}>Three simple steps from request to approval</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="grid-2">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {[
-            { step: '01', icon: '📝', title: 'Submit', color: '#6366F1', bg: '#EEF2FF', desc: 'Fill in the tool name, department, budget, and why your team needs it.' },
-            { step: '02', icon: '👥', title: 'HR Reviews', color: '#8B5CF6', bg: '#F5F3FF', desc: 'HR checks the request for policy fit and passes it to the director.' },
-            { step: '03', icon: '✅', title: 'Director Approves', color: '#EC4899', bg: '#FDF2F8', desc: "Final sign-off is given. The tool can be purchased right away." },
-          ].map((s, i) => (
-            <div key={s.step} className="card" style={{ padding: 28, position: 'relative', overflow: 'hidden' }}>
-              {/* Accent line */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${s.color}, ${i === 2 ? '#F472B6' : '#A78BFA'})`, borderRadius: '14px 14px 0 0' }} />
-              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, borderRadius: 14, background: s.bg, fontSize: 22, marginBottom: 16, marginTop: 8 }}>
+            { step: '01', icon: '📝', title: 'Submit', grad: 'linear-gradient(135deg,#6366F1,#8B5CF6)', desc: 'Fill in the tool name, department, budget and why your team needs it.' },
+            { step: '02', icon: '👥', title: 'HR Reviews', grad: 'linear-gradient(135deg,#8B5CF6,#C026D3)', desc: 'HR checks it for policy fit and passes it to the director.' },
+            { step: '03', icon: '✅', title: 'Director Approves', grad: 'linear-gradient(135deg,#C026D3,#EC4899)', desc: 'Final sign-off is given. The tool can be purchased right away.' },
+          ].map(s => (
+            <div key={s.step} style={{
+              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 20, padding: 28, position: 'relative', overflow: 'hidden',
+              transition: 'transform 0.2s, border-color 0.2s',
+            }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.grad, borderRadius: '20px 20px 0 0' }} />
+              <div style={{ width: 52, height: 52, borderRadius: 16, background: s.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 18, boxShadow: '0 8px 20px rgba(99,102,241,0.3)' }}>
                 {s.icon}
               </div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: s.color, letterSpacing: 2, marginBottom: 8 }}>STEP {s.step}</div>
-              <h3 style={{ fontSize: 17, fontWeight: 700, marginBottom: 10, color: 'var(--text-primary)' }}>{s.title}</h3>
-              <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.65 }}>{s.desc}</p>
+              <div style={{ fontSize: 11, fontWeight: 800, color: 'rgba(167,139,250,0.7)', letterSpacing: 2, marginBottom: 8 }}>STEP {s.step}</div>
+              <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 10, color: 'white' }}>{s.title}</h3>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{s.desc}</p>
             </div>
           ))}
         </div>
