@@ -42,7 +42,7 @@ export default function Home() {
           </div>
 
           {/* Headline */}
-          <h1 style={{ fontSize: 68, fontWeight: 900, lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.03em', color: 'white' }}>
+          <h1 className="hero-title" style={{ fontSize: 68, fontWeight: 900, lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.03em', color: 'white' }}>
             Request AI &{' '}
             <span style={{ background: 'linear-gradient(135deg, #A78BFA, #F472B6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               SaaS Tools
@@ -55,7 +55,7 @@ export default function Home() {
           </p>
 
           {/* CTAs */}
-          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="hero-btns" style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/submit" className="hero-btn-primary" style={{
               padding: '14px 32px', borderRadius: 14, fontWeight: 700, fontSize: 16,
               background: 'linear-gradient(135deg, #6366F1, #A855F7, #EC4899)',
@@ -89,7 +89,7 @@ export default function Home() {
           <p style={{ color: 'rgba(255,255,255,0.45)', marginTop: 10, fontSize: 15 }}>Three simple steps from request to approval</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {[
             { step: '01', icon: '📝', title: 'Submit', grad: 'linear-gradient(135deg,#6366F1,#8B5CF6)', desc: 'Fill in the tool name, department, budget and why your team needs it.' },
             { step: '02', icon: '👥', title: 'HR Reviews', grad: 'linear-gradient(135deg,#8B5CF6,#C026D3)', desc: 'HR checks it for policy fit and passes it to the director.' },

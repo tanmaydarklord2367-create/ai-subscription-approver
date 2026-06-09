@@ -259,7 +259,12 @@ body {
 }
 
 /* ─── Responsive ─── */
-@media (max-width: 640px) {
-  .grid-2   { grid-template-columns: 1fr !important; }
+@media (max-width: 768px) {
+  .grid-2     { grid-template-columns: 1fr !important; }
+  .grid-3     { grid-template-columns: 1fr !important; }
   .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .hero-title { font-size: 38px !important; }
+  .hero-btns  { flex-direction: column !important; align-items: stretch !important; }
+  .hero-btns a { justify-content: center !important; }
+  .hide-mobile { display: none !important; }
 }
