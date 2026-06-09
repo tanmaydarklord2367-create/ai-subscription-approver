@@ -44,7 +44,7 @@ export default function Login() {
       </nav>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, position: 'relative' }}>
-        <div className="card" style={{ maxWidth: 420, width: '100%', padding: '40px 36px' }}>
+        <div className="card form-card" style={{ maxWidth: 420, width: '100%', padding: '40px 36px' }}>
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 32 }}>
             <div style={{

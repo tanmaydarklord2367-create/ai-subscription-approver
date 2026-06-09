@@ -97,7 +97,7 @@ export default function Submit() {
 
       <nav className="nav"><Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link></nav>
 
-      <div style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 60px', position: 'relative' }}>
+      <div className="page-content" style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 60px', position: 'relative' }}>
         {/* Header */}
         <div style={{ marginBottom: 32 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 999, background: 'var(--primary-light)', color: 'var(--primary)', fontSize: 13, fontWeight: 600, marginBottom: 14 }}>
@@ -111,7 +111,7 @@ export default function Submit() {
           </p>
         </div>
 
-        <div className="card" style={{ padding: 36 }}>
+        <div className="card form-card" style={{ padding: 36 }}>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="grid-2">

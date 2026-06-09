@@ -274,4 +274,21 @@ body {
   .nav-logo { font-size: 15px !important; }
   .nav-btn-full { display: none !important; }
   .nav-btn-short { display: inline-flex !important; }
+  .nav-role-badge { display: none !important; }
+  .nav-actions { gap: 8px !important; }
+
+  /* Dashboard mobile */
+  .filter-tabs { overflow-x: auto; padding-bottom: 4px; flex-wrap: nowrap !important; }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .dash-header { flex-direction: column !important; align-items: flex-start !important; gap: 4px !important; }
+  .card-header { flex-direction: column !important; align-items: flex-start !important; }
+  .card-meta { flex-direction: column !important; gap: 4px !important; }
+  .approval-timeline { flex-direction: column !important; align-items: flex-start !important; }
+  .approval-connector { display: none !important; }
+
+  /* Page padding */
+  .page-content { padding: 24px 16px !important; }
+
+  /* Submit form */
+  .form-card { padding: 20px !important; }
 }

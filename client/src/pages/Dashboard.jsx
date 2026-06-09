@@ -113,7 +113,7 @@ function RequestCard({ request: req, canAct, actionLoading, onApprove, onReject 
       </div>
 
       {/* Employee info */}
-      <div style={{ display: 'flex', gap: 16, marginBottom: 12, fontSize: 13, color: 'var(--text-secondary)', flexWrap: 'wrap' }}>
+      <div className="card-meta" style={{ display: 'flex', gap: 16, marginBottom: 12, fontSize: 13, color: 'var(--text-secondary)', flexWrap: 'wrap' }}>
         <span>👤 {req.employeeName}</span>
         <span>✉ {req.employeeEmail}</span>
         <span>📅 Submitted {fmtDate(req.submittedAt)}</span>
@@ -138,9 +138,9 @@ function RequestCard({ request: req, canAct, actionLoading, onApprove, onReject 
       </div>
 
       {/* Approval timeline */}
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: canAct ? 16 : 0, flexWrap: 'wrap' }}>
+      <div className="approval-timeline" style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: canAct ? 16 : 0, flexWrap: 'wrap' }}>
         <ApprovalStep label="HR Review" status={hrStatus} date={req.hrAction?.at} />
-        <div style={{ width: 28, height: 2, background: 'var(--border-strong)', flexShrink: 0 }} />
+        <div className="approval-connector" style={{ width: 28, height: 2, background: 'var(--border-strong)', flexShrink: 0 }} />
         <ApprovalStep label="Director Review" status={dirStatus} date={req.directorAction?.at} />
       </div>
 
@@ -308,8 +308,8 @@ export default function Dashboard() {
       {/* Nav */}
       <nav className="nav">
         <Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span className={`badge ${role === 'hr' ? 'badge-pending-hr' : 'badge-pending-director'}`}>
+        <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span className={`nav-role-badge badge ${role === 'hr' ? 'badge-pending-hr' : 'badge-pending-director'}`}>
             {role === 'hr' ? '👥 HR Manager' : '🎯 Director'}
           </span>
           <button className="btn btn-outline btn-sm" onClick={logout}>Sign out</button>
@@ -318,7 +318,7 @@ export default function Dashboard() {
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
         {/* Page header */}
-        <div style={{ marginBottom: 28 }}>
+        <div className="dash-header" style={{ marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700 }}>
             {role === 'hr' ? 'HR Review Dashboard' : 'Director Approval Dashboard'}
           </h1>
@@ -357,7 +357,7 @@ export default function Dashboard() {
         </div>
 
         {/* Filters + refresh */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="filter-tabs" style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
           {FILTERS.map(f => (
             <button
               key={f.key}
