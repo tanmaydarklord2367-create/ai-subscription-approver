@@ -6,20 +6,19 @@ export default function Home() {
     <div style={{ minHeight: '100vh', background: '#0F0A1E' }}>
 
       {/* Nav */}
-      <nav style={{
-        padding: '0 32px', height: 68,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        borderBottom: '1px solid rgba(255,255,255,0.08)',
-        position: 'sticky', top: 0, zIndex: 100,
+      <nav className="nav" style={{
         background: 'rgba(15,10,30,0.85)', backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
       }}>
         <Logo size={30} />
         <Link to="/login" className="dark-nav-btn" style={{
-          padding: '9px 20px', borderRadius: 10, fontSize: 14, fontWeight: 600,
+          padding: '8px 16px', borderRadius: 10, fontSize: 13, fontWeight: 600,
           border: '1.5px solid rgba(167,139,250,0.4)', color: '#A78BFA',
           textDecoration: 'none', background: 'rgba(167,139,250,0.08)',
+          display: 'inline-flex', alignItems: 'center', gap: 6,
         }}>
-          Approver Login →
+          <span className="nav-btn-short" style={{ display: 'none' }}>Login</span>
+          <span className="nav-btn-full">Approver Login →</span>
         </Link>
       </nav>
 

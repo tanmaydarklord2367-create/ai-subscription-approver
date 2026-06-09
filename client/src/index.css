@@ -263,8 +263,15 @@ body {
   .grid-2     { grid-template-columns: 1fr !important; }
   .grid-3     { grid-template-columns: 1fr !important; }
   .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .hero-title { font-size: 38px !important; }
+  .hero-title { font-size: 36px !important; }
   .hero-btns  { flex-direction: column !important; align-items: stretch !important; }
   .hero-btns a { justify-content: center !important; }
   .hide-mobile { display: none !important; }
+  .show-mobile { display: inline-flex !important; }
+
+  /* Nav mobile */
+  .nav { padding: 0 16px !important; height: 54px !important; }
+  .nav-logo { font-size: 15px !important; }
+  .nav-btn-full { display: none !important; }
+  .nav-btn-short { display: inline-flex !important; }
 }
