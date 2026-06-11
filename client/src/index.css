@@ -221,7 +221,110 @@ body {
   border-radius: 50%;
   pointer-events: none;
   filter: blur(60px);
+  animation: blobFloat 14s ease-in-out infinite;
 }
+.blob:nth-of-type(2) { animation-duration: 18s; animation-delay: -6s; }
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -40px) scale(1.1); }
+  66%      { transform: translate(-25px, 25px) scale(0.95); }
+}
+
+/* ─── Animated mesh background (light pages) ─── */
+.mesh-bg {
+  background:
+    radial-gradient(at 15% 20%, rgba(99,102,241,0.10) 0px, transparent 50%),
+    radial-gradient(at 85% 10%, rgba(236,72,153,0.08) 0px, transparent 50%),
+    radial-gradient(at 75% 85%, rgba(139,92,246,0.10) 0px, transparent 50%),
+    radial-gradient(at 10% 90%, rgba(6,182,212,0.07) 0px, transparent 50%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ─── Grid pattern overlay (dark home) ─── */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(167,139,250,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167,139,250,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
+}
+
+/* ─── Entrance animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up    { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.fade-up-1  { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+.fade-up-2  { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.fade-up-3  { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+.fade-up-4  { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+
+/* ─── Floating decorations ─── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.float-slow { animation: floatY 5s ease-in-out infinite; }
+
+/* ─── Glowing pulse (hero badge) ─── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(167,139,250,0.25); }
+  50%      { box-shadow: 0 0 34px rgba(167,139,250,0.5); }
+}
+.glow-pulse { animation: glowPulse 3.2s ease-in-out infinite; }
+
+/* ─── Animated gradient text ─── */
+@keyframes gradientSlide {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-anim {
+  background: linear-gradient(90deg, #A78BFA, #F472B6, #38BDF8, #A78BFA);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientSlide 6s ease infinite;
+}
+
+/* ─── Stat chips (home) ─── */
+.stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.stat-chip:hover {
+  background: rgba(167,139,250,0.12);
+  border-color: rgba(167,139,250,0.4);
+  transform: translateY(-2px);
+}
+
+/* ─── Footer ─── */
+.site-footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 36px 24px;
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+}
+.site-footer a { color: rgba(167,139,250,0.8); text-decoration: none; font-weight: 600; }
+.site-footer a:hover { color: #C4B5FD; }
 
 /* ─── Dark home page hovers ─── */
 .dark-card {

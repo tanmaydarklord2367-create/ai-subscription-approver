@@ -304,7 +304,9 @@ export default function Dashboard() {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+    <div className="mesh-bg" style={{ minHeight: '100vh' }}>
+      <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.10)', top: -120, right: -120, position: 'fixed' }} />
+      <div className="blob" style={{ width: 320, height: 320, background: 'rgba(236,72,153,0.08)', bottom: -100, left: -100, position: 'fixed' }} />
       {/* Nav */}
       <nav className="nav">
         <Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link>
@@ -316,9 +318,9 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
+      <div className="page-content" style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px', position: 'relative' }}>
         {/* Page header */}
-        <div className="dash-header" style={{ marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="dash-header fade-up" style={{ marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700 }}>
             {role === 'hr' ? 'HR Review Dashboard' : 'Director Approval Dashboard'}
           </h1>
@@ -347,8 +349,8 @@ export default function Dashboard() {
             { label: 'Pending',        value: stats.pending,  icon: '⏳', grad: 'linear-gradient(135deg,#F59E0B,#EF4444)' },
             { label: 'Approved',       value: stats.approved, icon: '✅', grad: 'linear-gradient(135deg,#059669,#10B981)' },
             { label: 'Rejected',       value: stats.rejected, icon: '❌', grad: 'linear-gradient(135deg,#DC2626,#F87171)' },
-          ].map(s => (
-            <div key={s.label} className="card" style={{ padding: '20px 22px', overflow: 'hidden', position: 'relative' }}>
+          ].map((s, i) => (
+            <div key={s.label} className={`card fade-up-${i + 1}`} style={{ padding: '20px 22px', overflow: 'hidden', position: 'relative' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.grad, borderRadius: '14px 14px 0 0' }} />
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: 1.5, marginBottom: 8, marginTop: 4 }}>{s.icon} {s.label.toUpperCase()}</div>
               <div style={{ fontSize: 34, fontWeight: 900, background: s.grad, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{s.value}</div>

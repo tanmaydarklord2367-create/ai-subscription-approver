@@ -61,11 +61,12 @@ export default function Submit() {
 
   if (submitted) {
     return (
-      <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.1)', top: -100, right: -100, position: 'fixed' }} />
-        <nav className="nav"><Link to="/" className="nav-logo">✦ Django</Link></nav>
+      <div className="mesh-bg" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.14)', top: -100, right: -100, position: 'fixed' }} />
+        <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.12)', bottom: -80, left: -80, position: 'fixed' }} />
+        <nav className="nav"><Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link></nav>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <div className="card" style={{ maxWidth: 500, width: '100%', padding: 48, textAlign: 'center', position: 'relative' }}>
+          <div className="card form-card fade-up" style={{ maxWidth: 500, width: '100%', padding: 48, textAlign: 'center', position: 'relative' }}>
           <div style={{ marginBottom: 20 }}><Logo size={32} light /></div>
             <div style={{
               width: 72, height: 72, borderRadius: 22, background: 'var(--grad)',
@@ -91,15 +92,15 @@ export default function Submit() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', overflow: 'hidden' }}>
-      <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.1)', top: -100, right: -100, position: 'fixed' }} />
-      <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.08)', bottom: 0, left: -100, position: 'fixed' }} />
+    <div className="mesh-bg" style={{ minHeight: '100vh', overflow: 'hidden' }}>
+      <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.14)', top: -100, right: -100, position: 'fixed' }} />
+      <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.12)', bottom: 0, left: -100, position: 'fixed' }} />
 
       <nav className="nav"><Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link></nav>
 
       <div className="page-content" style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 60px', position: 'relative' }}>
         {/* Header */}
-        <div style={{ marginBottom: 32 }}>
+        <div className="fade-up" style={{ marginBottom: 32 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 999, background: 'var(--primary-light)', color: 'var(--primary)', fontSize: 13, fontWeight: 600, marginBottom: 14 }}>
             📝 New Request
           </div>
@@ -111,7 +112,7 @@ export default function Submit() {
           </p>
         </div>
 
-        <div className="card form-card" style={{ padding: 36 }}>
+        <div className="card form-card fade-up-1" style={{ padding: 36 }}>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="grid-2">

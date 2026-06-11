@@ -34,17 +34,17 @@ export default function Login() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div className="mesh-bg" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Blobs */}
-      <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.12)', top: -100, right: -100, position: 'fixed' }} />
-      <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.1)', bottom: -80, left: -80, position: 'fixed' }} />
+      <div className="blob" style={{ width: 400, height: 400, background: 'rgba(99,102,241,0.14)', top: -100, right: -100, position: 'fixed' }} />
+      <div className="blob" style={{ width: 300, height: 300, background: 'rgba(236,72,153,0.12)', bottom: -80, left: -80, position: 'fixed' }} />
 
       <nav className="nav">
         <Link to="/" style={{ textDecoration: 'none' }}><Logo size={28} light /></Link>
       </nav>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, position: 'relative' }}>
-        <div className="card form-card" style={{ maxWidth: 420, width: '100%', padding: '40px 36px' }}>
+        <div className="card form-card fade-up" style={{ maxWidth: 420, width: '100%', padding: '40px 36px' }}>
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 32 }}>
             <div style={{
