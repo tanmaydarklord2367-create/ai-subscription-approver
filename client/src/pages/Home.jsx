@@ -162,32 +162,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Bottom CTA */}
-      <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 90px', position: 'relative' }}>
-        <div style={{
-          borderRadius: 24, padding: '52px 32px', textAlign: 'center', position: 'relative', overflow: 'hidden',
-          background: 'linear-gradient(135deg, rgba(99,102,241,0.18), rgba(168,85,247,0.14), rgba(236,72,153,0.16))',
-          border: '1px solid rgba(167,139,250,0.25)',
-        }}>
-          <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(167,139,250,0.25) 0%, transparent 70%)', top: -150, right: -80, pointerEvents: 'none', filter: 'blur(30px)' }} />
-          <h2 style={{ fontSize: 30, fontWeight: 900, color: 'white', letterSpacing: '-0.02em', marginBottom: 12, position: 'relative' }}>
-            Need a tool? <span className="gradient-anim">Ask for it.</span>
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15, marginBottom: 30, position: 'relative' }}>
-            It takes less than 2 minutes to submit a request.
-          </p>
-          <Link to="/submit" className="hero-btn-primary" style={{
-            padding: '14px 36px', borderRadius: 14, fontWeight: 700, fontSize: 16,
-            background: 'linear-gradient(135deg, #6366F1, #A855F7, #EC4899)',
-            color: 'white', textDecoration: 'none',
-            boxShadow: '0 0 30px rgba(139,92,246,0.5)',
-            display: 'inline-flex', alignItems: 'center', gap: 8, position: 'relative',
-          }}>
-            Get Started →
-          </Link>
-        </div>
-      </div>
-
       {/* Footer */}
       <footer className="site-footer">
         <div style={{ marginBottom: 10 }}><Logo size={22} /></div>
