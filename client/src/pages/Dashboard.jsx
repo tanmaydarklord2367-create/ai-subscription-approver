@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import * as XLSX from 'xlsx';
 import Logo from '../components/Logo';
 
 /* ─── Helpers ─── */
@@ -266,34 +265,202 @@ export default function Dashboard() {
 
   const logout = () => { localStorage.clear(); navigate('/'); };
 
-  const exportToExcel = () => {
-    const rows = requests.map(r => ({
-      'Employee Name':        r.employeeName,
-      'Employee Email':       r.employeeEmail,
-      'Department':           r.department,
-      'Subscription Type':    r.toolType === 'ai' ? 'AI Subscription' : 'SaaS Software',
-      'Tool Name':            r.toolName,
-      'Tool Website':         r.toolWebsite || '',
-      'Budget Amount':        `₹${r.budgetAmount}`,
-      'Billing Cycle':        r.budgetCycle,
-      'Reason':               r.reason,
-      'Status':               r.status === 'pending_hr' ? 'Pending HR'
-                              : r.status === 'pending_director' ? 'Pending Director'
-                              : r.status.charAt(0).toUpperCase() + r.status.slice(1),
-      'Submitted Date':       new Date(r.submittedAt).toLocaleDateString(),
-      'HR Decision':          r.hrAction?.action || 'Pending',
-      'HR Decision Date':     r.hrAction?.at ? new Date(r.hrAction.at).toLocaleDateString() : '',
-      'HR Notes':             r.hrAction?.reason || '',
-      'Director Decision':    r.directorAction?.action || '',
-      'Director Decision Date': r.directorAction?.at ? new Date(r.directorAction.at).toLocaleDateString() : '',
-      'Director Notes':       r.directorAction?.reason || '',
-    }));
+  const exportToExcel = async () => {
+    const { Workbook } = await import('exceljs');
 
-    const ws = XLSX.utils.json_to_sheet(rows);
-    ws['!cols'] = [20,25,15,20,20,15,12,50,18,12,15,18,12,15,20,12].map(w => ({ wch: w }));
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Requests');
-    XLSX.writeFile(wb, `ai-requests-${new Date().toISOString().slice(0, 10)}.xlsx`);
+    const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+    const COLORS = {
+      primary: 'FF6366F1',
+      border:  'FFE5E7EB',
+      zebra:   'FFF6F7FF',
+      muted:   'FF6B7280',
+      status: {
+        approved:         { fill: 'FFECFDF5', text: 'FF065F46' },
+        rejected:         { fill: 'FFFEF2F2', text: 'FF991B1B' },
+        pending_hr:       { fill: 'FFFFFBEB', text: 'FF92400E' },
+        pending_director: { fill: 'FFECFEFF', text: 'FF164E63' },
+      },
+      type: {
+        ai:   { fill: 'FFF0FDF4', text: 'FF166534' },
+        saas: { fill: 'FFEFF6FF', text: 'FF1E40AF' },
+      },
+    };
+    const thin = { style: 'thin', color: { argb: COLORS.border } };
+    const allBorders = { top: thin, left: thin, bottom: thin, right: thin };
+    const STATUS_LABEL = {
+      pending_hr: 'Pending HR',
+      pending_director: 'Pending Director',
+      approved: 'Approved',
+      rejected: 'Rejected',
+    };
+
+    const wb = new Workbook();
+    wb.creator = 'Django Approvals Portal';
+    wb.created = new Date();
+
+    /* ── Sheet 1: Requests ── */
+    const ws = wb.addWorksheet('Requests', { views: [{ state: 'frozen', ySplit: 4 }] });
+
+    const COLUMNS = [
+      { header: '#',                 width: 5  },
+      { header: 'Employee Name',     width: 22 },
+      { header: 'Email',             width: 28 },
+      { header: 'Department',        width: 22 },
+      { header: 'Type',              width: 16 },
+      { header: 'Tool Name',         width: 22 },
+      { header: 'Website',           width: 28 },
+      { header: 'Budget (₹)',        width: 14 },
+      { header: 'Billing Cycle',     width: 13 },
+      { header: 'Status',            width: 17 },
+      { header: 'Submitted',         width: 13 },
+      { header: 'HR Decision',       width: 13 },
+      { header: 'HR Date',           width: 13 },
+      { header: 'HR Notes',          width: 26 },
+      { header: 'Director Decision', width: 16 },
+      { header: 'Director Date',     width: 14 },
+      { header: 'Director Notes',    width: 26 },
+      { header: 'Reason',            width: 60 },
+    ];
+    COLUMNS.forEach((c, i) => { ws.getColumn(i + 1).width = c.width; });
+
+    ws.mergeCells('A1:R1');
+    ws.getCell('A1').value = '✦ Django — AI & SaaS Tool Requests';
+    ws.getCell('A1').font = { size: 16, bold: true, color: { argb: COLORS.primary } };
+    ws.getRow(1).height = 26;
+
+    ws.mergeCells('A2:R2');
+    ws.getCell('A2').value =
+      `Exported ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}` +
+      ` · ${requests.length} requests · ${stats.pending} pending · ${stats.approved} approved · ${stats.rejected} rejected`;
+    ws.getCell('A2').font = { size: 11, italic: true, color: { argb: COLORS.muted } };
+
+    const headerRow = ws.getRow(4);
+    COLUMNS.forEach((c, i) => {
+      const cell = headerRow.getCell(i + 1);
+      cell.value = c.header;
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORS.primary } };
+      cell.font = { bold: true, size: 11, color: { argb: 'FFFFFFFF' } };
+      cell.alignment = { horizontal: 'center', vertical: 'middle' };
+      cell.border = allBorders;
+    });
+    headerRow.height = 22;
+    ws.autoFilter = { from: 'A4', to: 'R4' };
+
+    requests.forEach((r, idx) => {
+      const row = ws.getRow(5 + idx);
+      const values = [
+        idx + 1,
+        r.employeeName,
+        r.employeeEmail,
+        r.department,
+        r.toolType === 'ai' ? '🤖 AI' : '☁️ SaaS',
+        r.toolName,
+        r.toolWebsite || '—',
+        Number(r.budgetAmount) || 0,
+        cap(r.budgetCycle),
+        STATUS_LABEL[r.status] || r.status,
+        new Date(r.submittedAt),
+        r.hrAction?.action ? cap(r.hrAction.action) : 'Pending',
+        r.hrAction?.at ? new Date(r.hrAction.at) : '—',
+        r.hrAction?.reason || '—',
+        r.directorAction?.action ? cap(r.directorAction.action) : '—',
+        r.directorAction?.at ? new Date(r.directorAction.at) : '—',
+        r.directorAction?.reason || '—',
+        r.reason,
+      ];
+      values.forEach((v, i) => {
+        const cell = row.getCell(i + 1);
+        cell.value = v;
+        cell.border = allBorders;
+        cell.alignment = { vertical: 'middle', wrapText: i === 17 };
+        if (idx % 2 === 1) cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORS.zebra } };
+      });
+
+      row.getCell(8).numFmt = '"₹"#,##0';
+      [11, 13, 16].forEach(i => {
+        const cell = row.getCell(i);
+        if (cell.value instanceof Date) cell.numFmt = 'dd mmm yyyy';
+      });
+
+      const st = COLORS.status[r.status];
+      if (st) {
+        const cell = row.getCell(10);
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: st.fill } };
+        cell.font = { bold: true, color: { argb: st.text } };
+        cell.alignment = { horizontal: 'center', vertical: 'middle' };
+      }
+      const tp = COLORS.type[r.toolType];
+      if (tp) {
+        const cell = row.getCell(5);
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: tp.fill } };
+        cell.font = { bold: true, color: { argb: tp.text } };
+        cell.alignment = { horizontal: 'center', vertical: 'middle' };
+      }
+      if (r.toolWebsite) {
+        const cell = row.getCell(7);
+        cell.value = { text: r.toolWebsite, hyperlink: r.toolWebsite };
+        cell.font = { color: { argb: 'FF2563EB' }, underline: true };
+      }
+    });
+
+    /* ── Sheet 2: Summary ── */
+    const sm = wb.addWorksheet('Summary');
+    sm.getColumn(1).width = 32;
+    sm.getColumn(2).width = 18;
+
+    sm.mergeCells('A1:B1');
+    sm.getCell('A1').value = '✦ Django — Export Summary';
+    sm.getCell('A1').font = { size: 15, bold: true, color: { argb: COLORS.primary } };
+    sm.getRow(1).height = 24;
+
+    const spend = { monthly: 0, annual: 0, 'one-time': 0 };
+    requests.filter(r => r.status === 'approved')
+      .forEach(r => { spend[r.budgetCycle] += Number(r.budgetAmount) || 0; });
+
+    const deptCounts = {};
+    requests.forEach(r => { deptCounts[r.department] = (deptCounts[r.department] || 0) + 1; });
+
+    let rowNum = 3;
+    const addSummaryRow = (label, value, opts = {}) => {
+      const row = sm.getRow(rowNum++);
+      row.getCell(1).value = label;
+      row.getCell(1).font = { bold: opts.heading || false, size: opts.heading ? 12 : 11 };
+      if (value !== undefined) {
+        const cell = row.getCell(2);
+        cell.value = value;
+        cell.font = { bold: true, color: opts.text ? { argb: opts.text } : undefined };
+        if (opts.fill) cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: opts.fill } };
+        if (opts.rupee) cell.numFmt = '"₹"#,##0';
+        cell.alignment = { horizontal: 'center' };
+      }
+    };
+
+    addSummaryRow('Request Counts', undefined, { heading: true });
+    addSummaryRow('Total Requests', stats.total);
+    addSummaryRow('Pending', stats.pending, COLORS.status.pending_hr);
+    addSummaryRow('Approved', stats.approved, COLORS.status.approved);
+    addSummaryRow('Rejected', stats.rejected, COLORS.status.rejected);
+    rowNum++;
+    addSummaryRow('Approved Spend', undefined, { heading: true });
+    addSummaryRow('Monthly (recurring)', spend.monthly, { rupee: true });
+    addSummaryRow('Annual (recurring)', spend.annual, { rupee: true });
+    addSummaryRow('One-time', spend['one-time'], { rupee: true });
+    rowNum++;
+    addSummaryRow('Requests by Department', undefined, { heading: true });
+    Object.entries(deptCounts)
+      .sort((a, b) => b[1] - a[1])
+      .forEach(([dept, count]) => addSummaryRow(dept, count));
+
+    /* ── Download ── */
+    const buf = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `django-tool-requests-${new Date().toISOString().slice(0, 10)}.xlsx`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const FILTERS = [
