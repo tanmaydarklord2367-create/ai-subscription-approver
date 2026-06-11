@@ -191,7 +191,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="site-footer">
         <div style={{ marginBottom: 10 }}><Logo size={22} /></div>
-        <div>Internal AI & SaaS approval portal · Made with 💜 in Mumbai</div>
+        <div>Internal AI & SaaS approval portal</div>
         <div style={{ marginTop: 8 }}>
           <Link to="/submit">Submit a request</Link>
           <span style={{ margin: '0 10px', opacity: 0.3 }}>·</span>
